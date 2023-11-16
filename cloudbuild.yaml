@@ -1,0 +1,7 @@
+steps:
+  - name: "gcr.io/cloud-builders/gcloud"
+    entrypoint: "bash"
+    args:
+      - "-c"
+      - |
+        gcloud compute ssh moodle-vm --command "git pull origin master && sudo systemctl restart apache2 && echo 'bruh'"
