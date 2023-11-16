@@ -5,3 +5,10 @@ steps:
       - "-c"
       - |
         gcloud compute ssh moodle-vm --command "git pull origin master && sudo systemctl restart apache2 && echo 'bruh'"
+
+options:
+  logging: CLOUD_LOGGING_ONLY
+  build:
+    serviceAccount: 904224438130@cloudbuild.gserviceaccount.com
+    options:
+      defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
