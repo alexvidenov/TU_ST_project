@@ -8,7 +8,3 @@ steps:
 
 options:
   logging: CLOUD_LOGGING_ONLY
-  build:
-    serviceAccount: 904224438130@cloudbuild.gserviceaccount.com
-    options:
-      defaultLogsBucketBehavior: REGIONAL_USER_OWNED_BUCKET
