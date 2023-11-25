@@ -1,0 +1,11 @@
+{
+  "name": "tu_st_project",
+  "version": "1.0.0",
+  "description": "Moodle plugin + Discord bot for ST course in TU",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
