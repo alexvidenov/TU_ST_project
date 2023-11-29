@@ -21,7 +21,9 @@ client.on("interactionCreate", async (interaction) => {
   }
   const { commandName } = interaction;
   if (commands[commandName as keyof typeof commands]) {
-    commands[commandName as keyof typeof commands].execute(interaction);
+    if (interaction.isChatInputCommand()) {
+      commands[commandName as keyof typeof commands].execute(interaction);
+    }
   }
 });
 
