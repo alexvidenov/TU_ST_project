@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * @package   local_test
+ * @package   local_remote_sync
  * @copyright
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -25,5 +25,5 @@ defined('MOODLE_INTERNAL') || die();
 $plugin->version = 2022060100;
 $plugin->requires = 2022041900.00; // Moodle 4.0.
 
-$plugin->component = 'local_test';
+$plugin->component = 'local_remote_sync';
 $plugin->maturity = MATURITY_ALPHA;
