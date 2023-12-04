@@ -9,7 +9,7 @@ export async function execute(interaction: CommandInteraction) {
   const nonExistentCollectionRef = db.collection("nonExistentCollection");
 
   try {
-    nonExistentCollectionRef.get();
+    await nonExistentCollectionRef.get();
 
     return interaction.reply("Firestore connection is working!");
   } catch (error) {
