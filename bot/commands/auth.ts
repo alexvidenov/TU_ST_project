@@ -1,5 +1,7 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { db } from "../firebase.config";
+//@ts-ignore
+import { verify } from "node-php-password";
 
 export const data = new SlashCommandBuilder()
   .setName("auth")
@@ -27,7 +29,7 @@ export async function execute(interaction: ChatInputCommandInteraction) {
   const usersSnapshot = await db.collection("users").get();
   const users = usersSnapshot.docs.map((doc) => doc.data());
   const user = users.findIndex(
-    (u) => u.username === username && u.password === password
+    (u) => u.username === username && verify(password, u.password)
   );
 
   if (user === -1) {
