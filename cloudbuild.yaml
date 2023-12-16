@@ -5,7 +5,7 @@ steps:
       - |
         gcloud compute ssh moodle-vm \
           --zone=us-central1-a \
-          --command="cd /home/a_videnov8a/TU_ST_project && git pull origin master && sudo systemctl restart apache2 && echo 'bruh'"
+          --command="cd /home/a_videnov8a/TU_ST_project && git pull origin master && sudo cp -R /moodle /var/www/html/ && sudo systemctl restart apache2 && echo 'bruh'"
     entrypoint: bash
 
 options:
