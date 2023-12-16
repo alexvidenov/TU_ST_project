@@ -1,13 +1,20 @@
 import { MoodleRawUserType, MoodleRawUserTypeArr } from "./excel-types";
 import { parseAsync } from "json2csv";
 import { MoodleImportUserTypeArr } from "./moodle-types";
+import { Passwords, fetchPasswords } from "./remote-sync";
 
-const mapFormats = (users: MoodleRawUserTypeArr): MoodleImportUserTypeArr => {
+const PHPPassHash = require("node-php-password");
+
+const mapFormats = (
+  users: MoodleRawUserTypeArr,
+  passwords: Passwords
+): MoodleImportUserTypeArr => {
   return users.map((u: MoodleRawUserType) => {
     const namesArr = u.Имена.split(new RegExp(" "));
+    const pass = passwords[u["Фак. №"]];
     return {
       username: u["Фак. №"],
-      password: u["Фак. №"],
+      password: pass ?? PHPPassHash.hash(u["Фак. №"]),
       firstname: namesArr[0],
       middlename: namesArr[1],
       lastname: namesArr[2],
@@ -17,7 +24,10 @@ const mapFormats = (users: MoodleRawUserTypeArr): MoodleImportUserTypeArr => {
   });
 };
 
-export const convertCsv = async (users: MoodleRawUserTypeArr) => {
-  const mapped = mapFormats(users);
-  return parseAsync(mapped);
+export const convertCsv = async (
+  users: MoodleRawUserTypeArr
+): Promise<{ csv: string; moodle_mapped: MoodleImportUserTypeArr }> => {
+  const passwords = await fetchPasswords();
+  const mapped = mapFormats(users, passwords);
+  return { csv: await parseAsync(mapped), moodle_mapped: mapped };
 };

@@ -1,4 +1,4 @@
-export interface MoodleUserDto {
+export interface MoodleUserModel {
   cohorts: string[];
   course: number;
   degree: string;
@@ -14,5 +14,10 @@ export interface MoodleUserDto {
 }
 
 export interface UsersSyncReq {
-  users: MoodleUserDto[];
+  users: MoodleUserModel[];
+}
+
+export interface UpdatePassReq {
+  facNumber: string;
+  newPass: string;
 }
