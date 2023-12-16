@@ -1,8 +1,6 @@
-import { app, db, rawUploadsCollection, usersCollection } from "../services";
-import { MoodleUserModel, UsersSyncReq } from "./types";
+import { app, rawUploadsCollection, usersCollection } from "../services";
+import { MoodleUserModel } from "./types";
 import * as functions from "firebase-functions";
-
-const PHPPassHash = require("node-php-password");
 
 // moodle plugin notifies that a CLI-generated file has been uploaded
 app.get(

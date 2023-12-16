@@ -1,4 +1,4 @@
-import { app, db, rawUploadsCollection, usersCollection } from "../services";
+import { app, rawUploadsCollection } from "../services";
 import { UsersSyncReq } from "./types";
 import * as functions from "firebase-functions";
 

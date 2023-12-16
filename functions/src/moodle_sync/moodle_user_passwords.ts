@@ -5,7 +5,7 @@ import * as functions from "firebase-functions";
 const PHPPassHash = require("node-php-password");
 
 app.get(
-  "moodle/passwords",
+  "/moodle/passwords",
   async (_: functions.Request, res: functions.Response<any>) => {
     const passwords: { [key: string]: string } = {};
     const usersRef = await usersCollection().listDocuments();
@@ -22,7 +22,7 @@ app.get(
 );
 
 app.post(
-  "moodle/update/password",
+  "/moodle/update/password",
   async (req: functions.Request, res: functions.Response<any>) => {
     const { facNumber, newPass }: UpdatePassReq = req.body;
 

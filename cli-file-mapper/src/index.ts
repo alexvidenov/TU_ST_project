@@ -6,6 +6,8 @@ import { fsWriteCsv } from "./services/fs";
 import { mergeArrBy } from "./utils";
 import { remoteSync } from "./services/remote-sync";
 
+require("dotenv").config();
+
 const DEFAULT_MOODLE_RAW_EXCEL_FILENAME = "RawStudentData.xlsx";
 const DEFAULT_MOODLE_IMPORT_CSV_FILENAME = "MoodleUserImport";
 

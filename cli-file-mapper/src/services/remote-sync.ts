@@ -1,11 +1,16 @@
 import { MoodleRawUserType } from "./excel-types";
 import { MoodleImportUserType, MoodleRemoteUserModelDto } from "./moodle-types";
+import * as axios from "axios";
 
 export type Passwords = { [key: string]: string };
 
 // facNumber -> pass
 export const fetchPasswords = async (): Promise<Passwords> => {
-  return {};
+  const passwords = await axios.default.get(
+    `${process.env.CLOUD_FUNCS_URL}/moodle/passwords`
+  );
+
+  return passwords.data;
 };
 
 export const remoteSync = async (users: {
@@ -29,5 +34,11 @@ export const remoteSync = async (users: {
       };
     }
   );
-  console.log(`remoteUsersReq: ${JSON.stringify(remoteUsersReq)}`);
+
+  return await axios.default.post(
+    `${process.env.CLOUD_FUNCS_URL}/moodle/sync/users`,
+    {
+      users: remoteUsersReq,
+    }
+  );
 };
