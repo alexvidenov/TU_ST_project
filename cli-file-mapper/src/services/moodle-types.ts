@@ -121,3 +121,18 @@ const data = [
 export type MoodleImportUserTypeArr = typeof data;
 
 export type MoodleImportUserType = MoodleImportUserTypeArr[0];
+
+export interface MoodleRemoteUserModelDto {
+  cohorts: string[];
+  course: number;
+  degree: string;
+  email: string;
+  faculty: string;
+  firstname: string;
+  middlename: string;
+  lastname: string;
+  password: string;
+  specialty: string;
+  username: string;
+  facNumber: string;
+}

@@ -3,6 +3,8 @@ import { Command, program } from "commander";
 import { readExcel } from "./services/excel-reader";
 import { convertCsv } from "./services/csv-converter";
 import { fsWriteCsv } from "./services/fs";
+import { mergeArrBy } from "./utils";
+import { remoteSync } from "./services/remote-sync";
 
 const DEFAULT_MOODLE_RAW_EXCEL_FILENAME = "RawStudentData.xlsx";
 const DEFAULT_MOODLE_IMPORT_CSV_FILENAME = "MoodleUserImport";
@@ -36,7 +38,11 @@ const main = async () => {
 
   const csv = await convertCsv(users);
 
-  fsWriteCsv(DEFAULT_MOODLE_IMPORT_CSV_FILENAME, csv);
+  fsWriteCsv(DEFAULT_MOODLE_IMPORT_CSV_FILENAME, csv.csv);
+
+  const merged = mergeArrBy(csv.moodle_mapped, users, "username", "Фак. №");
+
+  await remoteSync(merged);
 };
 
 main();
