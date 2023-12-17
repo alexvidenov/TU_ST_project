@@ -119,5 +119,6 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
   await interaction.followUp({
     content: "Sync complete!",
+    ephemeral: true,
   });
 }
