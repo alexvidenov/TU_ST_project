@@ -107,11 +107,13 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       return roleYear < earliestCohortYear;
     });
 
-    await discordUser[1].roles.add(earliestCohortRole!);
     await discordUser[1].roles.remove(rolesToDelete);
+    await discordUser[1].roles.add(earliestCohortRole!);
 
     await discordUser[1].setNickname(
-      `${user.firstname} ${user.lastname} (${user.course} курс ${user.degree})`
+      `${user.firstname} ${user.lastname} (${
+        user.course
+      } курс ${user.degree.charAt(0)})`
     );
   }
 
