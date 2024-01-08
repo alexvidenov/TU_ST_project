@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { app, rawUploadsCollection } from "../services";
 import { UsersSyncReq } from "./types";
 import * as functions from "firebase-functions";

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { app, usersCollection } from "../services";
 import { MoodleUserModel, UpdatePassReq } from "./types";
 import * as functions from "firebase-functions";

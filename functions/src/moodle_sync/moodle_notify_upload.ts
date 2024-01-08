@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { app, rawUploadsCollection, usersCollection } from "../services";
 import { MoodleUserModel } from "./types";
 import * as functions from "firebase-functions";
