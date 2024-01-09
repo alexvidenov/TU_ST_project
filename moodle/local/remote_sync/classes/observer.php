@@ -11,11 +11,11 @@ class local_remote_sync_observer
         curl_setopt($curl, CURLOPT_URL, 'https://us-central1-moodle-tu-sync.cloudfunctions.net/api/moodle/notify');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
-        $data = curl_exec($curl);
+        curl_exec($curl);
         curl_close($curl);
     
-        echo "<pre>";
-        var_dump(json_decode($data));
-        echo "<pre>";
+        // echo "<pre>";
+        // var_dump(json_decode($data));
+        // echo "<pre>";
     }
 }
