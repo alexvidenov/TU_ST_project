@@ -7,11 +7,19 @@
 - Rename the file to `firebase-adminsdk.json` and place it inside the `bot` directory
 - Copy `.env.template` and name the copy `.env` and fill out the varaibles inside
 
+### To create a bot
+
+- Go to https://discord.com/developers/applications
+- Create 'New Application'
+- From the OAuth2 menu, go to the General submenu and get "CLIENT ID" and "CLIENT SECRET"
+- Make the `DISCORD_CLIENT_ID` variable in the `.env` file to be equal to the "CLIENT ID" and the `DISCORD_TOKEN` variable to be equal to the "CLIENT SECRET"
+- In order to add the bot to the server, from the OAuth2 menu, go to the URL Generator submenu. From the Scopes, select `bot` and `application.commands`. From Bot Permissions select `Administrator`. Then copy the generated URL from the bottom, visit it in your browser and add the bot to your server
+
 ### Installation
 
 ```$ npm install```
 
-### Running in dev mode
+### Running in dev mode (will be enough for testing and demonstration)
 
 ```$ npm run dev```
 
