@@ -11,8 +11,9 @@
 
 - Go to https://discord.com/developers/applications
 - Create 'New Application'
-- From the OAuth2 menu, go to the General submenu and get "CLIENT ID" and "CLIENT SECRET"
-- Make the `DISCORD_CLIENT_ID` variable in the `.env` file to be equal to the "CLIENT ID" and the `DISCORD_TOKEN` variable to be equal to the "CLIENT SECRET"
+- From the OAuth2 menu, go to the General submenu and get "CLIENT ID"
+- Make the `DISCORD_CLIENT_ID` variable in the `.env` file to be equal to the "CLIENT ID". Then go to the Bot menu (next to OAuth2), create a bot and generate a token. You need to assign the token to the `DISCORD_TOKEN` variable.
+- After that, in the same Bot menu, enable `SERVER MEMBERS INTENT` and `MESSAGE CONTENT INTENT` (they are located at the Privileged Gateway Intents section)
 - In order to add the bot to the server, from the OAuth2 menu, go to the URL Generator submenu. From the Scopes, select `bot` and `application.commands`. From Bot Permissions select `Administrator`. Then copy the generated URL from the bottom, visit it in your browser and add the bot to your server
 
 ### Installation
