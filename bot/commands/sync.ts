@@ -5,7 +5,8 @@ import {
   SlashCommandBuilder,
 } from "discord.js";
 import { db } from "../firebase.config";
-import { COHORT_ROLE_REGEX } from "../lib/constants";
+import { COHORT_ROLE_REGEX, COHORT_ROLE_MAP, COHORT_YEAR_REGEX } from "../lib/constants";
+
 
 export const data = new SlashCommandBuilder()
   .setName("sync")
@@ -77,8 +78,8 @@ export async function execute(interaction: ChatInputCommandInteraction) {
 
     const earliestCohort: string = user.cohorts.sort(
       (a: string, b: string): number => {
-        const yearA: number = parseInt(a.match(/\d{4}/)?.[0] || "");
-        const yearB: number = parseInt(b.match(/\d{4}/)?.[0] || "");
+        const yearA: number = parseInt(a.match(COHORT_YEAR_REGEX)?.[0] || "");
+        const yearB: number = parseInt(b.match(COHORT_YEAR_REGEX)?.[0] || "");
         return yearA - yearB;
       }
     )[0];
@@ -88,22 +89,27 @@ export async function execute(interaction: ChatInputCommandInteraction) {
       roles?.filter((role) => role.name.match(COHORT_ROLE_REGEX)) ||
       new Collection();
 
+    const earliestCohortYear = parseInt(
+      earliestCohort?.match(COHORT_YEAR_REGEX)?.[0] || ""
+    );
+
+    let cohortString = earliestCohort?.replace(/[\s\/]*\d+$/, '');
+
+    COHORT_ROLE_MAP.has(cohortString) ? cohortString = COHORT_ROLE_MAP.get(cohortString)! : cohortString;
+    
     let earliestCohortRole = allCohorRoles.find(
-      (role) => role.name === `${earliestCohort} (C)`
+      (role) => role.name === `${cohortString + earliestCohortYear}`
     );
 
     if (!earliestCohortRole) {
       earliestCohortRole = await interaction.guild?.roles.create({
-        name: `${earliestCohort} (C)`,
+        name: `${cohortString + earliestCohortYear}`,
         color: "Default",
       });
     }
-    const earliestCohortYear = parseInt(
-      earliestCohortRole?.name.match(/\d{4}/)?.[0] || ""
-    );
 
     const rolesToDelete = allCohorRoles.filter((role) => {
-      const roleYear = parseInt(role.name.match(/\d{4}/)?.[0] || "");
+      const roleYear = parseInt(role.name.match(COHORT_YEAR_REGEX)?.[0] || "");
       return roleYear < earliestCohortYear;
     });
 
